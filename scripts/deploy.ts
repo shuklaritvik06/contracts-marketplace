@@ -9,8 +9,9 @@ import verify from "../utils/verify";
 
 async function main() {
 	const logger = new ethers.utils.Logger("v1.0.0");
-	const MarketPlaceFactory: Marketplace__factory =
-		await ethers.getContractFactory("Marketplace");
+	const MarketPlaceFactory: Marketplace__factory = await ethers.getContractFactory(
+		"Marketplace"
+	);
 	logger.info("Deploying Marketplace...");
 	const MarketPlace: Marketplace = await MarketPlaceFactory.deploy();
 	logger.info("Marketplace deployed to:", MarketPlace.address);
@@ -24,7 +25,7 @@ async function main() {
 	await verify(MarketPlaceDeployed.address, []);
 }
 
-main().catch((error) => {
+main().catch(error => {
 	console.error(error);
 	process.exitCode = 1;
 });

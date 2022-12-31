@@ -27,7 +27,7 @@
 		"coverage": "hardhat coverage",
 		"compile": "hardhat compile",
 		"deploy": "hardhat run scripts/deploy.ts --network goerli",
-		"format": "npx prettier -c .prettierrc -w *.ts ./test/**/*.ts ./scripts/**/*.ts",
+		"format": "npx prettier -c .prettierrc --write *.ts ./test/**/*.ts ./scripts/**/*.ts",
 		"lint:solidity": "solhint contracts/**/*.sol --fix"
 	},
 	"description": "This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.",

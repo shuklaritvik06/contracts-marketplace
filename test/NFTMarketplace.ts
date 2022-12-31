@@ -7,7 +7,7 @@ import {
 } from "../typechain";
 import { assert } from "chai";
 
-describe("Marketplace Tests", function () {
+describe("Marketplace Tests", function() {
 	let MarketplaceFactory: Marketplace__factory;
 	let marketplace: Marketplace;
 	let NFTTokenFactory: NFT__factory;
@@ -24,7 +24,7 @@ describe("Marketplace Tests", function () {
 		logger.info(`Marketplace Contract deployed at ${marketplace.address}`);
 		logger.info(`NFT Contract deployed at ${NFTContract.address}`);
 	});
-	it("Should be able to create an item and sell", async function () {
+	it("Should be able to create an item and sell", async function() {
 		const listingPrice = await marketplace.getListingPrice();
 		const auction = ethers.utils.parseUnits("10", "ether");
 		await NFTContract.createToken("https://via.placeholder.com/200");
@@ -43,24 +43,24 @@ describe("Marketplace Tests", function () {
 				value: auction,
 			});
 	});
-	it("Should be able to get an item with id", async function () {
+	it("Should be able to get an item with id", async function() {
 		const item = await marketplace.fetchMarketItem(1);
 		assert(parseInt(item.itemId.toString()) !== 0, "Not found any item");
 		logger.info(`Got an item with id ${item.itemId}`);
 	});
-	it("Should be able to get market items", async function () {
+	it("Should be able to get market items", async function() {
 		const [sellerAddress, _] = await ethers.getSigners();
 		const items = await marketplace.connect(sellerAddress).fetchMarketItems();
 		assert(items.length !== 0, "No items found");
 		logger.info(`Got the items ${items}`);
 	});
-	it("Should be able to fetch all items created", async function () {
+	it("Should be able to fetch all items created", async function() {
 		const [sellerAddress, _] = await ethers.getSigners();
 		const items = await marketplace.connect(sellerAddress).fetchItemsCreated();
 		assert(items.length !== 0, "No items found");
 		logger.info(`Got the items ${items}`);
 	});
-	it("Should be able to fetch all bought items", async function () {
+	it("Should be able to fetch all bought items", async function() {
 		const [_, buyerAddress] = await ethers.getSigners();
 		const items = await marketplace.connect(buyerAddress).fetchMyNFTs();
 		assert(items.length !== 0, "No items found");
